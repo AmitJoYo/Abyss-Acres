@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://game_scene"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_game"]
+[ext_resource type="Script" path="res://Scripts/UI/hud.gd" id="2_hud"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_game")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="PlayerSnake" type="Node2D" parent="World"]
+script = ExtResource("1_game")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("2_hud")
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+text = "0"
+horizontal_alignment = 2
+
+[node name="LengthLabel" type="Label" parent="HUD"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 60.0
+text = "Length: 5"

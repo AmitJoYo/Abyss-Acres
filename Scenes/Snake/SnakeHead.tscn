@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://snake_head"]
+
+[ext_resource type="Script" path="res://Scripts/Snake/snake_controller.gd" id="1_ctrl"]
+[ext_resource type="Script" path="res://Scripts/Snake/player_input.gd" id="2_input"]
+
+[node name="SnakeHead" type="Node2D"]
+script = ExtResource("1_ctrl")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="PlayerInput" type="Node" parent="."]
+script = ExtResource("2_input")
+
+[node name="BodyManager" type="Node" parent="."]
+script = null

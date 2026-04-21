@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://death_feathers"]
+
+[ext_resource type="Script" path="res://Scripts/VFX/death_vfx.gd" id="1_dvfx"]
+
+[node name="FeatherPoof" type="Node2D"]
+script = ExtResource("1_dvfx")
+lifetime = 1.5
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+amount = 30
+lifetime = 1.2
+one_shot = true
+explosiveness = 0.9
+randomness = 0.6
+visibility_rect = Rect2(-100, -100, 200, 200)

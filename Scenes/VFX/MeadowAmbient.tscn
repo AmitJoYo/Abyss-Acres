@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://meadow_ambient"]
+
+[ext_resource type="Script" path="res://Scripts/VFX/ambient_particles.gd" id="1_amb"]
+
+[node name="MeadowAmbient" type="GPUParticles2D"]
+script = ExtResource("1_amb")
+amount = 80
+lifetime = 10.0
+speed_scale = 0.4
+randomness = 0.8
+visibility_rect = Rect2(-600, -800, 1200, 1600)

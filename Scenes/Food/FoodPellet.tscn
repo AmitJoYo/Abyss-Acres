@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://food_pellet"]
+
+[node name="FoodPellet" type="Node2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]

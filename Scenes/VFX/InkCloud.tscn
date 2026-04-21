@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://death_ink"]
+
+[ext_resource type="Script" path="res://Scripts/VFX/death_vfx.gd" id="1_dvfx"]
+
+[node name="InkCloud" type="Node2D"]
+script = ExtResource("1_dvfx")
+lifetime = 2.0
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+amount = 40
+lifetime = 1.8
+one_shot = true
+explosiveness = 0.7
+randomness = 0.5
+visibility_rect = Rect2(-120, -120, 240, 240)
