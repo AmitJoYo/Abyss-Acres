@@ -5,22 +5,24 @@ signal theme_changed(theme_name: String)
 
 const THEME_PATHS := {
 	"meadow": "res://Resources/ThemeMeadow.tres",
-	"abyss":  "res://Resources/ThemeAbyss.tres",
 }
 
 var current_theme_name: String = "meadow"
 var current_theme: ThemeData = null
-var use_lighting: bool = false
 
 ## Cached themes to avoid reload.
 var _themes: Dictionary = {}
 
 func _ready() -> void:
-	# Pre-load themes
+	# Pre-load themes (silently skip if assets are missing)
 	for key in THEME_PATHS:
 		var path: String = THEME_PATHS[key]
 		if ResourceLoader.exists(path):
-			_themes[key] = load(path) as ThemeData
+			var res = load(path)
+			if res is ThemeData:
+				_themes[key] = res
+			else:
+				push_warning("ThemeManager: '%s' failed to load (missing assets?)" % path)
 
 func set_theme(theme_name: String) -> void:
 	if theme_name not in THEME_PATHS:
@@ -36,11 +38,7 @@ func set_theme(theme_name: String) -> void:
 		current_theme = ThemeData.new()
 		current_theme.theme_name = theme_name
 
-	use_lighting = current_theme.use_lighting if current_theme else (theme_name == "abyss")
 	theme_changed.emit(current_theme_name)
-
-func is_abyss() -> bool:
-	return current_theme_name == "abyss"
 
 ## ---------- Asset accessors ----------
 func get_head_sprite(skin_index: int = 0) -> Texture2D:
@@ -69,13 +67,7 @@ func get_background_shader() -> Shader:
 	return current_theme.background_shader if current_theme else null
 
 func get_background_color() -> Color:
-	return current_theme.background_color if current_theme else Color(0.05, 0.05, 0.12)
-
-func get_head_light_color() -> Color:
-	return current_theme.head_light_color if current_theme else Color(0.2, 0.8, 1.0)
-
-func get_head_light_energy() -> float:
-	return current_theme.head_light_energy if current_theme else 1.5
+	return current_theme.background_color if current_theme else Color(0.2, 0.6, 0.1)
 
 ## ---------- Audio ----------
 func get_eat_sfx() -> AudioStream:

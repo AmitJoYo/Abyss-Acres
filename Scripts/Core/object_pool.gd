@@ -6,9 +6,13 @@ var _scene: PackedScene
 var _pool: Array[Node] = []
 var _active: Array[Node] = []
 
-func _init(scene: PackedScene, initial_count: int = 20) -> void:
+func _init(scene: PackedScene = null, initial_count: int = 20) -> void:
 	_scene = scene
-	for i in initial_count:
+	# Don't pre-allocate in _init — pool has no parent yet.
+	# Call preallocate() after adding pool to the tree.
+
+func preallocate(count: int) -> void:
+	for i in count:
 		_create_instance()
 
 func _create_instance() -> Node:
@@ -41,6 +45,11 @@ func release(inst: Node) -> void:
 		inst.process_mode = Node.PROCESS_MODE_DISABLED
 		inst.visible = false
 		inst.position = Vector2(-9999, -9999)
+		if inst.get_parent() != self:
+			if inst.get_parent():
+				inst.reparent(self)
+			else:
+				add_child(inst)
 		_pool.append(inst)
 
 ## Release all active nodes back to pool.

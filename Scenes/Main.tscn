@@ -1,23 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://main_scene"]
+[gd_scene load_steps=2 format=3 uid="uid://cxxclayi3y0qh"]
 
-[ext_resource type="PackedScene" uid="uid://game_scene" path="res://Scenes/Game.tscn" id="1_game"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_menu"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=330830012]
+script = ExtResource("1_menu")
 
-[node name="MainMenu" type="Control" parent="."]
+[node name="MainMenu" type="Control" parent="." unique_id=2065034210]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Background" type="ColorRect" parent="MainMenu"]
+[node name="Background" type="ColorRect" parent="MainMenu" unique_id=68689686]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.05, 0.05, 0.12, 1)
 
-[node name="Title" type="Label" parent="MainMenu"]
+[node name="Title" type="Label" parent="MainMenu" unique_id=18688434]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -26,11 +31,12 @@ offset_left = -200.0
 offset_top = 200.0
 offset_right = 200.0
 offset_bottom = 300.0
+grow_horizontal = 2
 text = "ABYSS & ACRES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayButton" type="Button" parent="MainMenu"]
+[node name="PlayButton" type="Button" parent="MainMenu" unique_id=738297646]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -39,7 +45,5 @@ offset_left = -100.0
 offset_top = 500.0
 offset_right = 100.0
 offset_bottom = 560.0
+grow_horizontal = 2
 text = "PLAY"
-
-[node name="PlayButton" type="Button" parent="MainMenu"]
-unique_name_in_owner = true

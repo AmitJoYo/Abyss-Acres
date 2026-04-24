@@ -1,19 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://game_scene"]
+[gd_scene load_steps=4 format=3 uid="uid://game_scene"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_game"]
 [ext_resource type="Script" path="res://Scripts/UI/hud.gd" id="2_hud"]
+[ext_resource type="PackedScene" path="res://Scenes/Snake/SnakeHead.tscn" id="3_snake"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_game")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-position_smoothing_speed = 8.0
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="PlayerSnake" type="Node2D" parent="World"]
-script = ExtResource("1_game")
+[node name="PlayerSnake" parent="World" instance=ExtResource("3_snake")]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("2_hud")

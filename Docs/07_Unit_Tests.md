@@ -110,11 +110,8 @@ res://Tests/
 | # | Test Case | Description |
 |---|---|---|
 | 37 | Load meadow theme | `set_theme("meadow")` → current theme name is "meadow" |
-| 38 | Load abyss theme | `set_theme("abyss")` → current theme name is "abyss" |
-| 39 | Theme swap updates sprites | After swap, head sprite matches new theme data |
-| 40 | Abyss enables lighting | Abyss theme → `use_lighting` is true |
-| 41 | Meadow disables lighting | Meadow theme → `use_lighting` is false |
-| 42 | Invalid theme name handled | `set_theme("invalid")` → no crash, theme unchanged |
+| 38 | Theme swap updates sprites | After swap, head sprite matches new theme data |
+| 39 | Invalid theme name handled | `set_theme("invalid")` → no crash, theme unchanged |
 
 ---
 

@@ -1,5 +1,7 @@
 # 💡 Abyss & Acres — Deep Sea Lighting Technical Stack
 
+> **⚠️ DEPRECATED:** The Abyss/deep-sea theme has been removed from scope. This document is retained for reference only and is not part of the current design.
+
 ## Target: Mid-Range Android (Snapdragon 680 / Mali-G57), 60 FPS
 
 ---

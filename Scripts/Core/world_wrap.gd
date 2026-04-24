@@ -1,5 +1,6 @@
-## WorldWrap — Autoload singleton for torus-world math.
-## All positions live in [-HALF_WORLD, +HALF_WORLD] on each axis.
+## WorldWrap — Autoload singleton for seamless torus-world math.
+## The world wraps silently — no visible edges, no boundaries.
+## Positions live in [-HALF_WORLD, +HALF_WORLD] on each axis.
 extends Node
 
 const WORLD_SIZE: float = 4000.0
@@ -26,6 +27,13 @@ static func wrapped_direction(from: Vector2, to: Vector2) -> Vector2:
 	var d := wrap_delta(to - from)
 	return d.normalized() if d.length_squared() > 0.0001 else Vector2.ZERO
 
+## Random position anywhere in the torus world.
+static func random_world_position() -> Vector2:
+	return Vector2(
+		randf_range(-HALF_WORLD, HALF_WORLD),
+		randf_range(-HALF_WORLD, HALF_WORLD)
+	)
+
 ## Check if a position is near a world edge (within margin pixels).
 static func is_near_edge(pos: Vector2, margin: float) -> Dictionary:
 	return {
@@ -35,7 +43,7 @@ static func is_near_edge(pos: Vector2, margin: float) -> Dictionary:
 		"bottom": pos.y >  HALF_WORLD - margin,
 	}
 
-## Return ghost positions for edge rendering (0-2 extra positions).
+## Return ghost positions for edge rendering (0-3 extra positions).
 static func get_ghost_positions(pos: Vector2, margin: float) -> Array[Vector2]:
 	var ghosts: Array[Vector2] = []
 	var near := is_near_edge(pos, margin)

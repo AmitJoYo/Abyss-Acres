@@ -13,7 +13,33 @@ const MAX_BOTS: int = 15
 const BOT_RESPAWN_DELAY: float = 3.0
 const INITIAL_BOTS: int = 5
 const DIFFICULTY_INTERVAL: float = 60.0
-const DIFFICULTY_SPEED_MULT: float = 0.05
+const DIFFICULTY_SPEED_MULT: float = 0.08
+const DIFFICULTY_MAX_BOTS_PER_LEVEL: int = 2
+
+## ---------- Game Modes ----------
+enum Mode { CLASSIC, TIMED, SHRINKING, LAST_STANDING }
+const MODE_NAMES := ["Classic", "Timed 3min", "Shrinking", "Last Standing"]
+const TIMED_DURATION: float = 180.0          # 3 minutes
+const SHRINK_INITIAL_RADIUS: float = 1900.0  # almost full world
+const SHRINK_FINAL_RADIUS: float = 350.0
+const SHRINK_DURATION: float = 240.0          # shrinks over 4 minutes
+
+var selected_mode: int = Mode.CLASSIC
+
+func is_timed() -> bool: return selected_mode == Mode.TIMED
+func is_shrinking() -> bool: return selected_mode == Mode.SHRINKING
+func is_last_standing() -> bool: return selected_mode == Mode.LAST_STANDING
+
+func time_remaining() -> float:
+	if not is_timed():
+		return 0.0
+	return maxf(0.0, TIMED_DURATION - elapsed_time)
+
+func current_arena_radius() -> float:
+	if not is_shrinking():
+		return 99999.0
+	var t := clampf(elapsed_time / SHRINK_DURATION, 0.0, 1.0)
+	return lerpf(SHRINK_INITIAL_RADIUS, SHRINK_FINAL_RADIUS, t)
 
 ## ---------- State ----------
 var score: int = 0
@@ -21,6 +47,7 @@ var high_score: int = 0
 var is_playing: bool = false
 var elapsed_time: float = 0.0
 var difficulty_level: int = 0
+var selected_skin_index: int = 0   # chosen from main menu
 
 ## Node references (assigned by Game scene)
 var player_snake: Node = null
@@ -62,10 +89,12 @@ func add_score(points: int) -> void:
 func get_bot_speed_multiplier() -> float:
 	return 1.0 + difficulty_level * DIFFICULTY_SPEED_MULT
 
+func get_max_bots() -> int:
+	return mini(INITIAL_BOTS + difficulty_level * DIFFICULTY_MAX_BOTS_PER_LEVEL, MAX_BOTS)
+
+func get_bot_starting_segments() -> int:
+	return 5 + difficulty_level * 2
+
 ## ---------- World helpers ----------
 func random_world_position() -> Vector2:
-	var hw := WorldWrap.HALF_WORLD
-	return Vector2(
-		randf_range(-hw, hw),
-		randf_range(-hw, hw)
-	)
+	return WorldWrap.random_world_position()

@@ -1,5 +1,5 @@
 ## ThemeData — Resource holding all visual/audio assets for one theme.
-## Create one .tres per theme (ThemeMeadow.tres, ThemeAbyss.tres).
+## Create one .tres per theme (e.g. ThemeMeadow.tres).
 @tool
 class_name ThemeData
 extends Resource
@@ -27,18 +27,8 @@ extends Resource
 @export var food_medium_score: int = 25
 
 ## Particles
-@export var ambient_particle_scene: PackedScene    # pollen or marine snow
-@export var death_particle_scene: PackedScene       # feathers or ink cloud
-
-## Lighting (Abyss only)
-@export var use_lighting: bool = false
-@export var head_light_color: Color = Color(0.2, 0.8, 1.0)
-@export var head_light_energy: float = 1.5
-@export var head_light_scale: float = 4.0
-
-## Chromatic aberration (Abyss only)
-@export var use_chromatic_aberration: bool = false
-@export var chromatic_shader: Shader
+@export var ambient_particle_scene: PackedScene    # pollen
+@export var death_particle_scene: PackedScene       # feathers
 
 ## Audio
 @export var music_track: AudioStream

@@ -1,0 +1,113 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8a8a8a8a8a8a"]
+
+[ext_resource type="Script" path="res://Scripts/Net/lobby.gd" id="1_lobby"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lobby")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.08, 0.12, 1)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 80.0
+offset_right = -60.0
+offset_bottom = -80.0
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Title" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "MULTIPLAYER LOBBY"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
+
+[node name="Row1" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="NicknameLabel" type="Label" parent="Panel/VBox/Row1"]
+layout_mode = 2
+text = "Nickname:"
+theme_override_font_sizes/font_size = 28
+
+[node name="NicknameField" type="LineEdit" parent="Panel/VBox/Row1"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Player"
+theme_override_font_sizes/font_size = 28
+
+[node name="Row2" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HostButton" type="Button" parent="Panel/VBox/Row2"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "HOST GAME"
+theme_override_font_sizes/font_size = 32
+
+[node name="HostsLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "Discovered Games:"
+theme_override_font_sizes/font_size = 26
+
+[node name="HostsScroll" type="ScrollContainer" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 320)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HostsList" type="VBoxContainer" parent="Panel/VBox/HostsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Row3" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="IpField" type="LineEdit" parent="Panel/VBox/Row3"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "10.1.1.116"
+theme_override_font_sizes/font_size = 26
+
+[node name="JoinButton" type="Button" parent="Panel/VBox/Row3"]
+custom_minimum_size = Vector2(220, 80)
+layout_mode = 2
+text = "JOIN BY IP"
+theme_override_font_sizes/font_size = 28
+
+[node name="StatusLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+
+[node name="Row4" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="BackButton" type="Button" parent="Panel/VBox/Row4"]
+custom_minimum_size = Vector2(220, 80)
+layout_mode = 2
+text = "BACK"
+theme_override_font_sizes/font_size = 28

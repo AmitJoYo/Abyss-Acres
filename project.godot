@@ -1,23 +1,38 @@
 ; Engine configuration file.
 ; It's best edited using the editor UI and not directly,
-; but it can also be manually edited if needed.
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
 
 [application]
 
 config/name="Abyss & Acres"
 config/description="Infinite wrapping Snake.io game with dual themes"
 run/main_scene="res://Scenes/Main.tscn"
-config/features=PackedStringArray("4.4", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://Scripts/Core/game_manager.gd"
+WorldWrap="*res://Scripts/Core/world_wrap.gd"
+ThemeManager="*res://Scripts/Theme/theme_manager.gd"
+SaveManager="*res://Scripts/Data/save_manager.gd"
+AudioManager="*res://Scripts/Audio/audio_manager.gd"
+NetManager="*res://Scripts/Net/net_manager.gd"
 
 [display]
 
 window/size/viewport_width=1080
 window/size/viewport_height=1920
 window/size/mode=2
-window/handheld/orientation=1
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/handheld/orientation=1
 
 [input_devices]
 
@@ -28,13 +43,3 @@ pointing/emulate_touch_from_mouse=true
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.05, 0.05, 0.12, 1)
-
-[physics]
-
-common/physics_ticks_per_second=60
-
-[autoload]
-
-GameManager="*res://Scripts/Core/game_manager.gd"
-WorldWrap="*res://Scripts/Core/world_wrap.gd"
-ThemeManager="*res://Scripts/Theme/theme_manager.gd"

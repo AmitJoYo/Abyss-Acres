@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="ThemeData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Theme/theme_data.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/Meadow/grass_tile.png" id="2_bg"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/Meadow/cow.png" id="3_cow"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/Meadow/pig.png" id="4_pig"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/Meadow/chicken.png" id="5_chicken"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/Meadow/sheep.png" id="6_sheep"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/Meadow/segment.png" id="7_seg"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/Meadow/food_crops.png" id="8_food"]
+[ext_resource type="Shader" path="res://Shaders/grass_wind.gdshader" id="9_shader"]
+[ext_resource type="PackedScene" path="res://Scenes/VFX/MeadowAmbient.tscn" id="10_ambient"]
+[ext_resource type="PackedScene" path="res://Scenes/VFX/FeatherPoof.tscn" id="11_death"]
+
+[resource]
+script = ExtResource("1_script")
+theme_name = "meadow"
+background_texture = ExtResource("2_bg")
+background_shader = ExtResource("9_shader")
+background_color = Color(0.2, 0.6, 0.1, 1)
+head_sprites = Array[Texture2D]([ExtResource("3_cow"), ExtResource("4_pig"), ExtResource("5_chicken"), ExtResource("6_sheep")])
+skin_names = Array[String](["Cow", "Pig", "Chicken", "Sheep"])
+segment_sprite = ExtResource("7_seg")
+segment_modulate = Color(1, 1, 1, 1)
+segment_blend_mode = 0
+food_sprites = Array[Texture2D]([ExtResource("8_food")])
+food_names = Array[String](["Apple", "Corn", "Carrot", "Cabbage"])
+food_small_segments = 1
+food_small_score = 10
+food_medium_segments = 2
+food_medium_score = 25
+ambient_particle_scene = ExtResource("10_ambient")
+death_particle_scene = ExtResource("11_death")
